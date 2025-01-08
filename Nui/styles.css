@@ -49,6 +49,8 @@ body {
 }
 
 .notification {
+    background: var(--glass-bg); 
+    backdrop-filter: blur(10px); 
     width: 380px;
     margin-bottom: 15px;
     border-radius: 16px;
