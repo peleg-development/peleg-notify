@@ -1,5 +1,6 @@
 # peleg-notify
 A clean and customizable notification system for FiveM, compatible with all frameworks. Includes sound support and a detailed guide for QBCore installation.
+for support join this (discord server)[https://discord.gg/qHnZqNbWkx] and open a ticket
 
 ---
 
