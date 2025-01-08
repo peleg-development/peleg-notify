@@ -53,7 +53,7 @@ For support join this [Discord server](https://discord.gg/qHnZqNbWkx) and open a
    ```
 2. Look for the following function:
    ```lua
-      function QBCore.Functions.Notify(text, texttype, length, icon)
+   function QBCore.Functions.Notify(text, texttype, length, icon)
           local message = {
            action = 'notify',
            type = texttype or 'primary',
