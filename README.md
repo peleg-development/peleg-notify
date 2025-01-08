@@ -39,7 +39,7 @@ For support join this [Discord server](https://discord.gg/qHnZqNbWkx) and open a
        TriggerClientEvent('QBCore:Notify', source, text, type, length)
    end
    ```
-3. Replace it with the following code to use `peleg-notify`:
+3. Replace it with the following code to use `peleg-notify` note if u want the defualt title put nil insted of "Notification":
    ```lua
    function QBCore.Functions.Notify(source, text, type, length)
        TriggerClientEvent("peleg-notify:client:showNotification", source, text, "Notification", type, length, false)
