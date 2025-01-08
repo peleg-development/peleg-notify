@@ -3,57 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Notifications</title>
+    <title>Pleeg Notify</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body :class="{ 'dark-mode': isDarkMode }">
-    <div id="app" :class="{ 'dark-mode': isDarkMode }">
-        <div class="settings-panel glass-effect">
-            <label class="switch">
-                <input type="checkbox" v-model="isDarkMode">
-                <span class="slider round"></span>
-                <span class="switch-label">Dark Mode</span>
-            </label>
-            <label class="switch">
-                <input type="checkbox" v-model="isSoundEnabled">
-                <span class="slider round"></span>
-                <span class="switch-label">Sound</span>
-            </label>
-        </div>
-
-        <div class="container">
-            <button @click="showNotification('success', 'Success!', 'Your action has been completed successfully')" class="btn success glass-effect">Success</button>
-            <button @click="showNotification('error', 'Error!', 'Oops! Something went wrong')" class="btn error glass-effect">Error</button>
-            <button @click="showNotification('warning', 'Warning!', 'Please check your input before proceeding')" class="btn warning glass-effect">Warning</button>
-            <button @click="showNotification('info', 'Info!', 'Here is some useful information for you')" class="btn info glass-effect">Info</button>
-        </div>
-
+<body>
+    <div id="app">
         <div class="notification-container">
             <transition-group name="notification">
                 <div v-for="notification in notifications" 
                      :key="notification.id"
-                     :class="['notification', 'glass-effect', notification.type]"
-                     @click="removeNotification(notification.id)">
+                     :class="['notification', notification.type, notification.darkMode ? 'dark-mode' : '']">
                     <div class="notification-content">
                         <div class="notification-header">
                             <i :class="getIcon(notification.type)"></i>
                             <h3>{{ notification.title }}</h3>
                         </div>
                         <p>{{ notification.message }}</p>
-                        <div class="progress-wrapper">
-                            <div class="progress-bar" :style="{ animationDuration: duration + 'ms' }"></div>
-                        </div>
                     </div>
                 </div>
             </transition-group>
         </div>
-
-        <audio id="successSound" src="sound.mp3"></audio>
-        <audio id="errorSound" src="sound.mp3"></audio>
-        <audio id="warningSound" src="sound.mp3"></audio>
-        <audio id="infoSound" src="sound.mp3"></audio>
+        <audio id="notificationSound" src="sound.mp3"></audio>
     </div>
     <script src="app.js"></script>
 </body>

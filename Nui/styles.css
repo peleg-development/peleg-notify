@@ -133,7 +133,19 @@ body {
 .btn.warning { color: var(--warning-color); }
 .btn.info { color: var(--info-color); }
 
+
 /* Animations */
+.notification-enter-active {
+    animation: slideIn 0.5s ease forwards;
+}
+.notification-leave-active {
+    animation: slideOut 0.5s ease forwards;
+}
+.notification-leave-to {
+    opacity: 0;
+    transform: translateX(100%) scale(0.9);
+}
+
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -144,6 +156,18 @@ body {
         transform: translateX(0) scale(1);
     }
 }
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%) scale(0.9);
+    }
+}
+
 
 @keyframes progress {
     from { width: 100%; }

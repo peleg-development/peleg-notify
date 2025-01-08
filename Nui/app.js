@@ -1,72 +1,45 @@
 new Vue({
-    el: '#app',
+    el: "#app",
     data: {
-        notifications: [],
-        notificationId: 0,
-        isDarkMode: false,
-        isSoundEnabled: true,
-        duration: 5000 // 5 seconds
+        notifications: [] 
     },
     methods: {
-        showNotification(type, title, message) {
-            const id = this.notificationId++;
-            const notification = {
-                id,
-                type,
-                title,
-                message
-            };
-            
-            this.notifications.push(notification);
+        showNotification(type, title, message, duration = 5000, darkMode = false) {
+            const id = Date.now(); 
+            this.notifications.push({ id, type, title, message, duration, darkMode });
 
-            if (this.isSoundEnabled) {
-                this.playSound(type);
-            }
+            this.playSound();
 
             setTimeout(() => {
                 this.removeNotification(id);
-            }, this.duration);
+            }, duration);
         },
-
         removeNotification(id) {
-            const index = this.notifications.findIndex(n => n.id === id);
-            if (index !== -1) {
-                this.notifications.splice(index, 1);
-            }
+            this.notifications = this.notifications.filter(notification => notification.id !== id);
         },
-
         getIcon(type) {
             const icons = {
-                success: 'fas fa-check-circle',
-                error: 'fas fa-times-circle',
-                warning: 'fas fa-exclamation-circle',
-                info: 'fas fa-info-circle'
+                success: "fas fa-check-circle",
+                error: "fas fa-times-circle",
+                warning: "fas fa-exclamation-triangle",
+                info: "fas fa-info-circle"
             };
-            return icons[type] || icons.info;
+            return icons[type] || "fas fa-bell";
         },
-
-        playSound(type) {
-            const audio = document.getElementById(`${type}Sound`);
-            if (audio) {
-                audio.currentTime = 0;
-                audio.play().catch(e => console.log('Sound play failed:', e));
+        playSound() {
+            const sound = document.getElementById("notificationSound");
+            if (sound) {
+                sound.currentTime = 0; 
+                sound.play();
             }
         }
     },
-    
-    watch: {
-        isDarkMode(newValue) {
-            localStorage.setItem('isDarkMode', newValue);
-            document.body.classList.toggle('dark-mode', newValue);
-        },
-        isSoundEnabled(newValue) {
-            localStorage.setItem('isSoundEnabled', newValue);
-        }
-    },
-    
     mounted() {
-        this.isDarkMode = localStorage.getItem('isDarkMode') === 'true';
-        this.isSoundEnabled = localStorage.getItem('isSoundEnabled') !== 'false';
-        document.body.classList.toggle('dark-mode', this.isDarkMode);
+        window.addEventListener("message", (event) => {
+            if (event.data.action === "showNotification") {
+                const { type, title, description, duration, darkMode } = event.data;
+                this.showNotification(type, title, description, duration, darkMode);
+            }
+        });
     }
 });
