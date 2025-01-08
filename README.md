@@ -27,7 +27,71 @@ For support join this [Discord server](https://discord.gg/qHnZqNbWkx) and open a
      ```
 
 4. **QBCore Installation**
-   - For QBCore, ensure the resource is properly integrated by using the examples below.
+
+### Server-Side Changes
+1. Navigate to the file:
+   ```
+   qb-core\server\functions.lua
+   ```
+2. Look for the following function:
+   ```lua
+   function QBCore.Functions.Notify(source, text, type, length)
+       TriggerClientEvent('QBCore:Notify', source, text, type, length)
+   end
+   ```
+3. Replace it with the following code to use `peleg-notify`:
+   ```lua
+   function QBCore.Functions.Notify(source, text, type, length)
+       TriggerClientEvent("peleg-notify:client:showNotification", source, text, "Notification", type, length, false)
+   end
+   ```
+
+### Client-Side Changes
+1. Navigate to the file:
+   ```
+   qb-core\client\functions.lua
+   ```
+2. Look for the following function:
+   ```lua
+      function QBCore.Functions.Notify(text, texttype, length, icon)
+          local message = {
+           action = 'notify',
+           type = texttype or 'primary',
+           length = length or 5000,
+       }
+
+       if type(text) == 'table' then
+           message.text = text.text or 'Placeholder'
+           message.caption = text.caption or 'Placeholder'
+       else
+           message.text = text
+       end
+
+       if icon then
+           message.icon = icon
+       end
+
+       SendNUIMessage(message)
+   end
+   ```
+   
+3. Replace it with the following code to use `peleg-notify`:
+   ```lua
+   function QBCore.Functions.Notify(text, texttype, length, custom_icon)
+       local type = texttype or "info"
+       local title = "Notification"
+       local darkMode = false
+       if type(text) == "table" then
+           local message = text.text
+           local duration = length or 5000
+           exports["peleg-notify"]:notify(message, title, type, duration, darkMode)
+       else
+           local message = text
+           local duration = length or 5000
+           exports["peleg-notify"]:notify(message, title, type, duration, darkMode)
+       end
+   end
+   ```
 
 ---
 
