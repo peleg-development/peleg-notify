@@ -1,13 +1,13 @@
 fx_version 'cerulean'
 game 'gta5'
 
-ui_page 'index.html'
+ui_page 'Nui/index.html'
 
 files {
-    'index.html',
-    'styles.css',
-    'app.js',
-    'sound.mp3'
+    'Nui/index.html',
+    'Nui/styles.css',
+    'Nui/app.js',
+    'Nui/sound.mp3'
 }
 
 client_scripts {
