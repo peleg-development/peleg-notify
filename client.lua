@@ -1,6 +1,6 @@
 local defaultTitle = "Notification"
 local defaultType = "info"
-local defaultDarkMode = false
+local defaultDarkMode = true
 local defaultDuration = 5000
 
 RegisterNetEvent("peleg-notify:client:showNotification", function(description, title, type, duration, darkMode)
@@ -29,3 +29,9 @@ exports("Notify", function(description, title, type, duration, darkMode)
     end
     TriggerEvent("peleg-notify:client:showNotification", description, title, type, duration, darkMode)
 end)
+
+-- Available notification types:
+-- "success" - with check icon
+-- "error" - with X icon
+-- "warning" - with exclamation triangle icon
+-- "info" - with info circle icon

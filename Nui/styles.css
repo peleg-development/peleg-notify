@@ -4,20 +4,16 @@
     --warning-color: #ffbb33;
     --info-color: #33b5e5;
     --bg-gradient: linear-gradient(120deg, #f6f7f9, #ffffff);
-    --glass-bg: rgba(255, 255, 255, 0.95);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --text-primary: #2c3e50;
-    --text-secondary: #34495e;
-    --shadow-color: rgba(0, 0, 0, 0.05);
-}
-
-.dark-mode {
-    --bg-gradient: linear-gradient(120deg, #1a1a1a, #2d2d2d);
-    --glass-bg: rgba(40, 40, 40, 0.95);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --text-primary: #ecf0f1;
-    --text-secondary: #bdc3c7;
-    --shadow-color: rgba(0, 0, 0, 0.2);
+    --glass-bg-light: rgba(30, 30, 30, 0.98);
+    --glass-bg-dark: rgba(30, 30, 30, 0.98);
+    --glass-border-light: rgba(60, 60, 60, 0.5);
+    --glass-border-dark: rgba(60, 60, 60, 0.5);
+    --text-primary-light: rgba(255, 255, 255, 0.95);
+    --text-secondary-light: rgba(255, 255, 255, 0.85);
+    --text-primary-dark: rgba(255, 255, 255, 0.95);
+    --text-secondary-dark: rgba(255, 255, 255, 0.85);
+    --shadow-color-light: rgba(0, 0, 0, 0.4);
+    --shadow-color-dark: rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -35,10 +31,9 @@ body {
 }
 
 .glass-effect {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px 0 var(--shadow-color);
+    background: var(--glass-bg-light);
+    border: 1px solid var(--glass-border-light);
+    box-shadow: 0 8px 32px 0 var(--shadow-color-light);
 }
 
 .notification-container {
@@ -49,43 +44,59 @@ body {
 }
 
 .notification {
-    background: var(--glass-bg); 
-    backdrop-filter: blur(10px); 
-    width: 380px;
-    margin-bottom: 15px;
-    border-radius: 16px;
+    width: 350px;
+    margin-bottom: 12px;
+    border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
     transform-origin: right;
-    animation: slideIn 0.5s ease forwards;
+    animation: slideIn 0.3s ease forwards;
+    background: var(--glass-bg-light);
+    border: 1px solid var(--glass-border-light);
+    box-shadow: 0 4px 12px 0 var(--shadow-color-light);
+}
+
+.notification.dark-mode {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: 0 4px 12px 0 var(--shadow-color-dark);
 }
 
 .notification-content {
-    padding: 20px;
+    padding: 16px;
 }
 
 .notification-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 8px;
+    gap: 10px;
+    margin-bottom: 6px;
 }
 
 .notification-header i {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .notification-header h3 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-primary-light);
+    letter-spacing: 0.3px;
+}
+
+.dark-mode .notification-header h3 {
+    color: var(--text-primary-dark);
 }
 
 .notification p {
-    color: var(--text-secondary);
-    font-size: 15px;
-    line-height: 1.5;
-    margin: 8px 0;
+    color: var(--text-secondary-light);
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 6px 0;
+}
+
+.dark-mode .notification p {
+    color: var(--text-secondary-dark);
 }
 
 .success i { color: var(--success-color); }
@@ -94,11 +105,15 @@ body {
 .info i { color: var(--info-color); }
 
 .progress-wrapper {
-    height: 3px;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 1px;
     overflow: hidden;
-    margin-top: 12px;
+    margin-top: 8px;
+}
+
+.dark-mode .progress-wrapper {
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .progress-bar {
@@ -138,20 +153,20 @@ body {
 
 /* Animations */
 .notification-enter-active {
-    animation: slideIn 0.5s ease forwards;
+    animation: slideIn 0.3s ease forwards;
 }
 .notification-leave-active {
-    animation: slideOut 0.5s ease forwards;
+    animation: slideOut 0.3s ease forwards;
 }
 .notification-leave-to {
     opacity: 0;
-    transform: translateX(100%) scale(0.9);
+    transform: translateX(100%) scale(0.95);
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateX(100%) scale(0.9);
+        transform: translateX(100%) scale(0.95);
     }
     to {
         opacity: 1;
@@ -166,7 +181,7 @@ body {
     }
     to {
         opacity: 0;
-        transform: translateX(100%) scale(0.9);
+        transform: translateX(100%) scale(0.95);
     }
 }
 
@@ -195,9 +210,13 @@ body {
 }
 
 .switch-label {
-    color: var(--text-primary);
+    color: var(--text-primary-light);
     font-weight: 500;
     font-size: 15px;
+}
+
+.dark-mode .switch-label {
+    color: var(--text-primary-dark);
 }
 
 .slider {
