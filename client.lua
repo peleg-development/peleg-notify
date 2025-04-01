@@ -21,3 +21,11 @@ exports("notify", function(description, title, type, duration, darkMode)
     end
     TriggerEvent("peleg-notify:client:showNotification", description, title, type, duration, darkMode)
 end)
+
+exports("Notify", function(description, title, type, duration, darkMode)
+    if not description then
+        print("^1[Error]: Description is required for the notification^0")
+        return
+    end
+    TriggerEvent("peleg-notify:client:showNotification", description, title, type, duration, darkMode)
+end)
