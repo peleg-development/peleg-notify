@@ -141,8 +141,7 @@ exports["peleg-notify"]:notify("This is a warning!", nil, "warning", 4000, false
 ---
 
 ## Preview
-![image](https://github.com/user-attachments/assets/cb0daf8d-f14e-4731-869e-f657a3809dda)
-![image](https://github.com/user-attachments/assets/20c17a4e-3b70-47a4-950e-a7665311de4c)
+![image](https://github.com/user-attachments/assets/7732491d-4fc5-404c-b0b7-79928b290373)
 
 ---
 
