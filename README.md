@@ -210,4 +210,4 @@ For custom notifications, you can use any FontAwesome icon. Examples:
 ---
 
 ## License
-This resource is open-source and available under the MIT license.
+This resource is open-source and available under the GPL license.
