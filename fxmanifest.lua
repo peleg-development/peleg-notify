@@ -1,5 +1,12 @@
 fx_version 'cerulean'
+
+shared_script "@SecureServe/src/module/module.lua"
+shared_script "@SecureServe/src/module/module.js"
+file "@SecureServe/secureserve.key"
 game 'gta5'
+author 'Peleg'
+description 'Modern FiveM Notification System'
+version '2.0.0'
 
 ui_page 'Nui/index.html'
 
@@ -15,3 +22,6 @@ client_scripts {
 }
 
 export 'notify'
+export 'Notify'
+export 'notifyCustom'
+export 'NotifyCustom'

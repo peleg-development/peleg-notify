@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peleg Notify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
@@ -11,25 +14,43 @@
 <body>
     <div id="app">
         <div class="notification-container">
-            <transition-group name="notification">
+            <transition-group name="notification" tag="div" class="notification-stack" appear>
                 <div v-for="notification in notifications" 
                      :key="notification.id"
-                     :class="['notification', notification.type, notification.darkMode ? 'dark-mode' : '']">
+                     :data-id="notification.id"
+                     :class="['notification', notification.type, notification.darkMode ? 'dark-mode' : '', notification.rtl ? 'rtl' : '']"
+                     role="alert"
+                     :style="notification.rtl 
+                        ? { borderRightColor: getTypeColor(notification.type, notification.customColor) } 
+                        : { borderLeftColor: getTypeColor(notification.type, notification.customColor) }"
+                     :dir="notification.rtl ? 'rtl' : 'ltr'"
+                     aria-live="polite">
+                    
+                    <div class="notification-icon">
+                        <i :class="getIcon(notification.type, notification.customIcon)"
+                           :style="{ color: getTypeColor(notification.type, notification.customColor) }"></i>
+                    </div>
+                    
                     <div class="notification-content">
                         <div class="notification-header">
-                            <i :class="getIcon(notification.type)"></i>
-                            <h3>{{ notification.title }}</h3>
+                            <h3 class="notification-title">{{ notification.title }}</h3>
                         </div>
-                        <p>{{ notification.message }}</p>
-                        <div class="progress-wrapper">
-                            <div class="progress-bar" :style="{ animationDuration: notification.duration + 'ms' }"></div>
-                        </div>
+                        <p class="notification-message">{{ notification.message }}</p>
+                    </div>
+                    
+                    <div class="notification-progress">
+                        <div class="progress-bar" :style="{ animationDuration: notification.duration + 'ms', background: getTypeColor(notification.type, notification.customColor) }"></div>
                     </div>
                 </div>
             </transition-group>
         </div>
-        <audio id="notificationSound" src="sound.mp3"></audio>
+
+
+        <audio id="notificationSound" preload="auto">
+            <source src="sound.mp3" type="audio/mpeg">
+        </audio>
     </div>
+    
     <script src="app.js"></script>
 </body>
 </html>
