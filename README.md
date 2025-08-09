@@ -5,6 +5,11 @@ For support join this [Discord server](https://discord.gg/qHnZqNbWkx) and open a
 
 ---
 
+## Preview
+<img width="396" height="710" alt="image" src="https://github.com/user-attachments/assets/0119d259-3908-4134-a7f4-ed6b3e5a4dae" />
+
+---
+
 ## Features
 - **Clean UI:** Designed for clarity and simplicity.
 - **Framework Compatibility:** Works with any FiveM framework.
@@ -201,11 +206,6 @@ For custom notifications, you can use any FontAwesome icon. Examples:
 - `"fa-solid fa-car"` - Vehicle related
 - `"fa-solid fa-home"` - Property related
 - `"fa-solid fa-money-bill"` - Money related
-
----
-
-## Preview
-
 
 ---
 
