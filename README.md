@@ -85,17 +85,17 @@ For support join this [Discord server](https://discord.gg/qHnZqNbWkx) and open a
 3. Replace it with the following code to use `peleg-notify`:
    ```lua
    function QBCore.Functions.Notify(text, texttype, length, custom_icon)
-       local type = texttype or "info"
+       local _type = texttype or "info"
        local title = "Notification"
        local darkMode = false
        if type(text) == "table" then
            local message = text.text
            local duration = length or 5000
-           exports["peleg-notify"]:notify(message, title, type, duration, darkMode)
+           exports["peleg-notify"]:notify(message, title, _type, duration, darkMode)
        else
            local message = text
            local duration = length or 5000
-           exports["peleg-notify"]:notify(message, title, type, duration, darkMode)
+           exports["peleg-notify"]:notify(message, title, _type, duration, darkMode)
        end
    end
    ```
