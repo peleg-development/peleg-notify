@@ -91,11 +91,11 @@ For support join this [Discord server](https://discord.gg/qHnZqNbWkx) and open a
        if type(text) == "table" then
            local message = text.text
            local duration = length or 5000
-           exports["peleg-notify"]:notify(message, title, type, duration, darkMode)
+           exports["peleg-notify"]:notify(message, title, type, duration, darkMode, false, "top-right")
        else
            local message = text
            local duration = length or 5000
-           exports["peleg-notify"]:notify(message, title, type, duration, darkMode)
+           exports["peleg-notify"]:notify(message, title, type, duration, darkMode, false, "top-right")
        end
    end
    ```
@@ -109,28 +109,28 @@ The resource provides client exports and events to trigger notifications.
 
 #### Trigger Notification with Export
 ```lua
-exports["peleg-notify"]:notify("This is a description", "Custom Title", "success", 7000, true, false)
+exports["peleg-notify"]:notify("This is a description", "Custom Title", "success", 7000, true, false, "top-right")
 -- or
-exports["peleg-notify"]:Notify("This is a description", "Custom Title", "success", 7000, true, false)
+exports["peleg-notify"]:Notify("This is a description", "Custom Title", "success", 7000, true, false, "top-center")
 ```
 
 #### Trigger Notification with Event
 ```lua
-TriggerEvent("peleg-notify:client:showNotification", "This is a description", "Custom Title", "error", 5000, false, false)
+TriggerEvent("peleg-notify:client:showNotification", "This is a description", "Custom Title", "error", 5000, false, false, "bottom-left")
 ```
 
 ### Custom Notifications
 
 #### Trigger Custom Notification with Export
 ```lua
-exports["peleg-notify"]:notifyCustom("POLICE: Something bad is happening", "POLICE ALERT", "#2563eb", "fa-solid fa-shield-halved", 6000, true, false)
+exports["peleg-notify"]:notifyCustom("POLICE: Something bad is happening", "POLICE ALERT", "#2563eb", "fa-solid fa-shield-halved", 6000, true, false, "top-center")
 -- or
-exports["peleg-notify"]:NotifyCustom("POLICE: Something bad is happening", "POLICE ALERT", "#2563eb", "fa-solid fa-shield-halved", 6000, true, false)
+exports["peleg-notify"]:NotifyCustom("POLICE: Something bad is happening", "POLICE ALERT", "#2563eb", "fa-solid fa-shield-halved", 6000, true, false, "bottom-right")
 ```
 
 #### Trigger Custom Notification with Event
 ```lua
-TriggerEvent("peleg-notify:client:showCustomNotification", "Server restart in 10 minutes", "SERVER NOTICE", "#8b5cf6", "fa-solid fa-bullhorn", 7000, true, false)
+TriggerEvent("peleg-notify:client:showCustomNotification", "Server restart in 10 minutes", "SERVER NOTICE", "#8b5cf6", "fa-solid fa-bullhorn", 7000, true, false, "center")
 ```
 
 ### Standard Notification Parameters
@@ -142,6 +142,7 @@ TriggerEvent("peleg-notify:client:showCustomNotification", "Server restart in 10
 | `duration`     | number  | `5000`          | Duration in milliseconds before the notification disappears. |
 | `darkMode`     | boolean | `true`          | Whether the notification should use dark mode styling.   |
 | `rtl`          | boolean | `false`         | Whether the notification should use right-to-left text direction. |
+| `position`     | string  | `"top-right"`   | The position of the notification on screen.             |
 
 ### Custom Notification Parameters
 | Parameter      | Type    | Default         | Description                                              |
@@ -153,6 +154,7 @@ TriggerEvent("peleg-notify:client:showCustomNotification", "Server restart in 10
 | `duration`     | number  | `5000`          | Duration in milliseconds before the notification disappears. |
 | `darkMode`     | boolean | `true`          | Whether the notification should use dark mode styling.   |
 | `rtl`          | boolean | `false`         | Whether the notification should use right-to-left text direction. |
+| `position`     | string  | `"top-right"`   | The position of the notification on screen.             |
 
 ---
 
@@ -188,6 +190,21 @@ exports["peleg-notify"]:notifyCustom("POLICE: Something bad is happening", "POLI
 TriggerEvent("peleg-notify:client:showCustomNotification", "Server restart in 10 minutes", "SERVER NOTICE", "#8b5cf6", "fa-solid fa-bullhorn", 7000, true, false)
 ```
 
+### Example 7: Different Positions
+```lua
+-- Top center notification
+exports["peleg-notify"]:notify("This appears at the top center", "Top Center", "info", 5000, true, false, "top-center")
+
+-- Bottom left notification
+exports["peleg-notify"]:notify("This appears at the bottom left", "Bottom Left", "warning", 5000, true, false, "bottom-left")
+
+-- Center notification
+exports["peleg-notify"]:notify("This appears in the center", "Center", "success", 5000, true, false, "center")
+
+-- Custom notification in top-left
+exports["peleg-notify"]:notifyCustom("Custom position test", "Custom", "#ff6b6b", "fa-solid fa-star", 5000, true, false, "top-left")
+```
+
 ---
 
 ## Available Notification Types
@@ -196,6 +213,15 @@ TriggerEvent("peleg-notify:client:showCustomNotification", "Server restart in 10
 - `"warning"` - Orange notification with exclamation triangle icon
 - `"info"` - Blue notification with info circle icon
 - `"custom"` - Custom color and icon (only available with custom notification functions)
+
+## Available Positions
+- `"top-right"` - Top right corner (default)
+- `"top-left"` - Top left corner
+- `"top-center"` - Top center
+- `"bottom-right"` - Bottom right corner
+- `"bottom-left"` - Bottom left corner
+- `"bottom-center"` - Bottom center
+- `"center"` - Center of screen
 
 ---
 

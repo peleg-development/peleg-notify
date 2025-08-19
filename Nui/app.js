@@ -72,6 +72,17 @@ new Vue({
                 info: '#3b82f6'
             };
             return colors[type] || '#6b7280';
+        },
+
+        updatePosition(position) {
+            const container = document.querySelector('.notification-container');
+            if (container) {
+                // Remove all position classes
+                container.classList.remove('top-right', 'top-left', 'top-center', 'bottom-right', 'bottom-left', 'bottom-center', 'center');
+                // Add the new position class
+                container.classList.add(position);
+                this.position = position;
+            }
         }
     },
     
@@ -80,11 +91,17 @@ new Vue({
         
         window.addEventListener("message", (event) => {
             if (event.data.action === "showNotification") {
-                const { type, title, description, duration, darkMode, rtl } = event.data;
+                const { type, title, description, duration, darkMode, rtl, position } = event.data;
+                if (position && position !== this.position) {
+                    this.updatePosition(position);
+                }
                 this.showNotification(type, title, description, duration, darkMode, rtl);
             }
             if (event.data.action === "showCustomNotification") {
-                const { title, description, duration, darkMode, rtl, customColor, customIcon } = event.data;
+                const { title, description, duration, darkMode, rtl, customColor, customIcon, position } = event.data;
+                if (position && position !== this.position) {
+                    this.updatePosition(position);
+                }
                 this.showNotification('custom', title, description, duration, darkMode, rtl, { customColor, customIcon });
             }
         });
