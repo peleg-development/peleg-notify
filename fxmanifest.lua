@@ -2,8 +2,8 @@ fx_version 'cerulean'
 
 game 'gta5'
 author 'Peleg'
-description 'Modern FiveM Notification System'
-version '2.0.0'
+description 'Premium FiveM Notification System - Clean, Modern & Unique'
+version '2.1.0'
 
 ui_page 'Nui/index.html'
 
