@@ -8,7 +8,7 @@ For support join this [Discord server](https://discord.gg/qHnZqNbWkx) and open a
 
 ## ✨ Preview
 
-<img width="396" height="710" alt="peleg-notify preview" src="https://github.com/user-attachments/assets/0119d259-3908-4134-a7f4-ed6b3e5a4dae" />
+<img width="1921" height="972" alt="image" src="https://github.com/user-attachments/assets/a57ff523-28b1-4553-8404-943996d15b43" />
 
 ---
 
