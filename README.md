@@ -278,15 +278,3 @@ exports['peleg-notify']:Notify(description, title, type, duration, darkMode, rtl
 exports['peleg-notify']:notifyCustom(description, title, color, icon, duration, darkMode, rtl, position)
 exports['peleg-notify']:NotifyCustom(description, title, color, icon, duration, darkMode, rtl, position)
 ```
-
----
-
-## 📜 License
-
-This resource is open-source and available under the GPL license.
-
----
-
-## 🙏 Credits
-
-Created by **Peleg** - A modern notification system designed for the FiveM community.
