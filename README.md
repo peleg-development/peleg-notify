@@ -2,7 +2,7 @@
 
 A **premium, modern, and unique** notification system for FiveM. Designed with a sleek glassmorphism aesthetic, smooth animations, and complete framework compatibility.
 
-For support join this [Discord server](https://discord.gg/qHnZqNbWkx) and open a ticket.
+For support join this [Discord server](https://discord.gg/9AuTeZPgrX) and open a ticket.
 
 ---
 
